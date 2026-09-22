@@ -1,5 +1,7 @@
 // swift-tools-version:5.7
+
 import PackageDescription
+
 let package = Package(
     name: "BigoADSMediation",
     platforms: [
@@ -13,12 +15,8 @@ let package = Package(
     ],
     dependencies: [
         .package(
-            url: "https://github.com/googleads/swift-package-manager-google-mobile-ads.git",
-            exact: "12.14.0"
-        ),
-        .package(
-            url: "https://github.com/AppLovin/AppLovin-MAX-Swift-Package.git",
-            exact: "13.1.0"
+            url: "https://github.com/bigo-ads/BigoADS-Swift-Package.git",
+            exact: "6.1.0"
         ),
     ],
     targets: [
@@ -26,37 +24,28 @@ let package = Package(
             name: "BigoADSAdMobAdapter",
             dependencies: [
                 "bigo_ads_admob_adapter",
-                .product(
-                    name: "GoogleMobileAds",
-                    package: "swift-package-manager-google-mobile-ads"
-                ),
+                .product(name: "BigoADS", package: "bigoads-swift-package"),
             ]
         ),
         .target(
             name: "BigoADSIronSourceAdapter",
             dependencies: [
                 "bigo_ads_ironsource_adapter",
-                "IronSource",
+                .product(name: "BigoADS", package: "bigoads-swift-package"),
             ]
         ),
         .target(
             name: "BigoADSMaxAdapter",
             dependencies: [
                 "bigo_ads_max_adapter",
-                .product(
-                    name: "AppLovinSDK",
-                    package: "applovin-max-swift-package"
-                ),
+                .product(name: "BigoADS", package: "bigoads-swift-package"),
             ]
         ),
         .target(
             name: "BigoADSNewMaxAdapter",
             dependencies: [
                 "bigo_ads_new_max_adapter",
-                .product(
-                    name: "AppLovinSDK",
-                    package: "applovin-max-swift-package"
-                ),
+                .product(name: "BigoADS", package: "bigoads-swift-package"),
             ]
         ),
         .binaryTarget(
@@ -78,11 +67,6 @@ let package = Package(
             name: "bigo_ads_new_max_adapter",
             url: "https://static-fed-oss.adsbigo.com/bigoads-framework/bigo_ads_new_max_adapter_6.1.0.0_49.zip",
             checksum: "2c4864cc1d1b3a024b7c805346f92e8b6e913e74f27a6b1cb1f897ea6380771c"
-        ),
-        .binaryTarget(
-            name: "IronSource",
-            url: "https://raw.githubusercontent.com/ironsource-mobile/iOS-sdk/IronSource_8.3.0/8.3.0/IronSource8.3.0.zip",
-            checksum: "77553c6d561a941f5a4cbd1f92bf9a75e9fe09a4580227052d269a7e119deb3f"
         ),
     ]
 )
